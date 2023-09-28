@@ -15,8 +15,17 @@ fetch(apiUrl)
   .then((data) => {
     // Los datos de las fotos se encuentran en el objeto 'data'
     console.log(data);
-    // Aquí puedes procesar los datos o mostrar las imágenes en tu aplicación
-   for
+
+ 
+    // Aquí puedes procesar los datos o mostrar las imágenes en tu aplicaciónfor ()
+    const img = document.getElementById("img");
+
+    for (let index = 0; index < data.photos.length ; index++) {
+       const valor=data.photos[index].img_src;
+       const imageElement = document.createElement("img");
+       imageElement.src=valor;
+      img.appendChild(imageElement);
+    }
   })
   .catch((error) => {
     console.error('Ocurrió un error:', error);
