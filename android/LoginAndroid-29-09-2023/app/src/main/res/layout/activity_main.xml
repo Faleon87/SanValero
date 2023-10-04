@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:drawableEnd="@drawable/done_icon"/>
+                android:drawableEnd="@drawable/baseline_done_24"/>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:drawableEnd="@drawable/password_icon"/>
+                android:drawableEnd="@drawable/baseline_remove_red_eye_24"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
