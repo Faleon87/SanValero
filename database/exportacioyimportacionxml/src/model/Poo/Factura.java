@@ -1,5 +1,7 @@
 package model.Poo;
 
+import java.util.ArrayList;
+
 public class Factura {
 private int id_factura;
 private String medio_pago;
@@ -66,5 +68,13 @@ private  String fecha;
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public static String toXML(ArrayList<Factura> infofactura){
+        String xml="<Facturas>\n";
+        for (int i = 0; i <infofactura.size() ; i++) {
+
+        }
+        xml+= "<Facturas>";
     }
 }
