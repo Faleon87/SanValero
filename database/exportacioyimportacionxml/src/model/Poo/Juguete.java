@@ -1,6 +1,8 @@
 package model.Poo;
 
-public class Juguete {
+import java.util.ArrayList;
+
+public class Juguete extends ArrayList<Juguete> {
 
     private int id_juguete;
     private int id_nota_pago;
@@ -71,24 +73,19 @@ public class Juguete {
                 '}';
     }
 
-    public String toXml(){
-        return "<Juguetes>" +
-                "<id_juguete>" +
-                id_juguete +
-                "</id_juguete>" +
-                "<id_nota_pago>" +
-                id_nota_pago +
-                "</id_nota_pago>" +
-                "<nombre>"+
-                nombre+
-                "</nombre>"+
-                "<cantidad>"+
-                cantidad +
-                "</cantidad>"+
-                "<precio>" +
-                precio +
-                "</precio>"+
-                "</Juguetes>";
+    public static String toXml(ArrayList<Juguete> info){
+        String xml="<Juguetes>\n";
+        for (int i = 0; i <info.size() ; i++) {
+            xml += "<Juguete pk=" + '"' + info.get(i).getId_juguete() + '"' + ">\n";
+            xml += "<id_juguete>" + info.get(i).getId_juguete() + "</id_juguete>\n";
+            xml += "<id_nota_pago>" + info.get(i).getId_nota_pago() + "</id_nota_pago>\n";
+            xml += "<nombre>" + info.get(i).getNombre() + "</nombre>\n";
+            xml += "<cantidad>" + info.get(i).getCantidad() + "</cantidad>\n";
+            xml += "<precio>" + info.get(i).getPrecio() + "</precio>\n";
+            xml += "</Juguete>\n";
+        }
+        xml+= "</Jugetes>\n";
+        return xml;
     }
 
 }

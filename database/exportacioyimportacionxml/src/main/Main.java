@@ -1,9 +1,11 @@
 package main;
 
+import model.Poo.Albaran;
 import model.Poo.Juguete;
 import model.SqlAction;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -54,9 +56,23 @@ public class Main {
                     }
                     break;
                 case 2:
-               SqlAction sql = new SqlAction();
-               sql.findProveedor();
-                    break;
+                    System.out.println("Que tabla quieres: Albaran,Factura,Juguete,NotaPago");
+                    table = sc.next();
+                    if (table.equalsIgnoreCase("JUGUETE")){
+                        SqlAction sql = new SqlAction();
+                        ArrayList<Juguete> j1 = sql.findJuguete();
+                        String xml = Juguete.toXml(j1);
+                        System.out.println(xml);
+                    }if (table.equalsIgnoreCase("ALBARAN")){
+                        SqlAction sql = new SqlAction();
+                        ArrayList<Albaran> a1 = sql.findAlbaran();
+                        String xml = Albaran.toXml(a1);
+                        System.out.println(xml);
+                    }if (table.equalsIgnoreCase("FACTURA")){
+                        SqlAction sql = new SqlAction();
+                        ArrayList<Factura> f1 = sql.
+                }
+
             }
         }while (resp!=0);
 
