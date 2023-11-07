@@ -29,7 +29,7 @@ public class Main {
                         try {
                             reader=new FileReader(file);
                         } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
+                            System.out.println("tonto: " + e);
                         }
                     }if(table.toUpperCase().equals("FACTURA")){
 
