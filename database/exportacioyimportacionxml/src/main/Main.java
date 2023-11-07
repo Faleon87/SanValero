@@ -1,17 +1,20 @@
 package main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import model.Poo.Juguete;
+import model.SqlAction;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        File file;
-        int resp;
-        String table;
-        FileReader reader;
+        File file=null;
+        int resp=0;
+        String table="";
+        FileReader reader=null;
+        BufferedReader buffer=null;
+        String salidaArchivo;
 
         do {
             System.out.println("Salir: 0" );
@@ -23,20 +26,37 @@ public class Main {
                     System.out.println("Que tabla quieres: Albaran,Factura,Juguete,NotaPago");
                     table = sc.next();
                     if (table.toUpperCase().equals("ALBARAN")){
-                        System.out.println("Pasame la ruta de tu archivo mamon");
-                        table = sc.next();
-                        file = new File(table);
                         try {
+                            System.out.println("Pasame la ruta de tu archivo mamon");
+                            table = sc.next();
+                            file = new File(table);
                             reader=new FileReader(file);
-                        } catch (FileNotFoundException e) {
-                            System.out.println("tonto: " + e);
+                            buffer = new BufferedReader(reader);
+                            while((salidaArchivo=buffer.readLine())!=null){
+
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Error: " + e);
+                        }finally {
+                            try {
+                                if (null != reader){
+                                    reader.close();
+                                }if (null != buffer){
+                                    buffer.close();
+
+                                }
+                            }catch (Exception e2){
+                                e2.printStackTrace();
+                            }
                         }
                     }if(table.toUpperCase().equals("FACTURA")){
 
                     }
                     break;
                 case 2:
-
+               SqlAction sql = new SqlAction();
+               sql.findProveedor();
+                    break;
             }
         }while (resp!=0);
 
