@@ -2,6 +2,7 @@ package model;
 
 import model.MotorSql.MotorSql;
 import model.Poo.Albaran;
+import model.Poo.Factura;
 import model.Poo.Juguete;
 
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ public class SqlAction {
 
     private final String SQL_SELECT_JUGUETE="select *  from juguete";
     private final String SQL_SELECT_ALBARAN="select * from albaran";
+    private final String SQL_SELECT_FACTURA="select * from factura";
     private MotorSql motorSql;
 
     public  SqlAction(){
@@ -64,6 +66,30 @@ public class SqlAction {
         }
         return infoAlbaran;
 
+    }
+
+    public ArrayList<Factura>  findFactura(){
+        ArrayList<Factura> infoFactura= new ArrayList<>();
+        String sql = SQL_SELECT_FACTURA;
+        try {
+            this.motorSql.connect();
+            ResultSet rs = this.motorSql.executeQuery(sql);
+            while (rs.next()){
+                Factura factura = new Factura();
+                factura.setId_factura(rs.getInt(1));
+                factura.setMedio_pago(rs.getString(2));
+                factura.setDireccion_envio(rs.getString(3));
+                factura.setCodigo_envio(rs.getInt(4));
+                factura.setCompaniaTransporte(rs.getString(5));
+                factura.setFecha(rs.getString(6));
+                infoFactura.add(factura);
+            }
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }finally {
+            this.motorSql.disconnect();
+        }
+        return infoFactura;
     }
 
 }

@@ -70,11 +70,31 @@ private  String fecha;
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "id_factura=" + id_factura +
+                ", medio_pago='" + medio_pago + '\'' +
+                ", direccion_envio='" + direccion_envio + '\'' +
+                ", codigo_envio=" + codigo_envio +
+                ", companiaTransporte='" + companiaTransporte + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
+
     public static String toXML(ArrayList<Factura> infofactura){
         String xml="<Facturas>\n";
         for (int i = 0; i <infofactura.size() ; i++) {
-
+            xml+= "<Factura pk=" + '"' + infofactura.get(i).getId_factura() + '"' + ">\n";
+            xml+= "<id_factura>" + infofactura.get(i).getId_factura() + "</id_factura>\n";
+            xml+= "<medio_pago>" + infofactura.get(i).getMedio_pago() + "</medio_pago>\n";
+            xml+= "<direccion_envio>" + infofactura.get(i).getDireccion_envio() + "</direccion_envio>\n";
+            xml+= "<codigo_envio>" + infofactura.get(i).getCodigo_envio() + "</codigo_envio>\n";
+            xml+= "<compania_transporte>" + infofactura.get(i).getCompaniaTransporte() + "</compania_transporte>\n";
+            xml+= "<fecha>" + infofactura.get(i).getFecha()+ "</fecha>\n";
+            xml+="</Factura>\n";
         }
-        xml+= "<Facturas>";
+        xml+= "<Facturas>\n";
+        return xml;
     }
 }
