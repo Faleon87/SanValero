@@ -1,0 +1,73 @@
+<Juguetes>
+<Juguete pk="1">
+<id_juguete>1</id_juguete>
+<id_nota_pago>21</id_nota_pago>
+<nombre>Juguete 1</nombre>
+<cantidad>5</cantidad>
+<precio>10</precio>
+</Juguete>
+<Juguete pk="2">
+<id_juguete>2</id_juguete>
+<id_nota_pago>22</id_nota_pago>
+<nombre>Juguete 2</nombre>
+<cantidad>3</cantidad>
+<precio>15</precio>
+</Juguete>
+<Juguete pk="3">
+<id_juguete>3</id_juguete>
+<id_nota_pago>23</id_nota_pago>
+<nombre>Juguete 3</nombre>
+<cantidad>2</cantidad>
+<precio>20</precio>
+</Juguete>
+<Juguete pk="4">
+<id_juguete>4</id_juguete>
+<id_nota_pago>24</id_nota_pago>
+<nombre>Juguete 4</nombre>
+<cantidad>6</cantidad>
+<precio>12</precio>
+</Juguete>
+<Juguete pk="5">
+<id_juguete>5</id_juguete>
+<id_nota_pago>25</id_nota_pago>
+<nombre>Juguete 5</nombre>
+<cantidad>4</cantidad>
+<precio>18</precio>
+</Juguete>
+<Juguete pk="6">
+<id_juguete>6</id_juguete>
+<id_nota_pago>26</id_nota_pago>
+<nombre>Juguete 6</nombre>
+<cantidad>1</cantidad>
+<precio>25</precio>
+</Juguete>
+<Juguete pk="7">
+<id_juguete>7</id_juguete>
+<id_nota_pago>27</id_nota_pago>
+<nombre>Juguete 7</nombre>
+<cantidad>7</cantidad>
+<precio>14</precio>
+</Juguete>
+<Juguete pk="8">
+<id_juguete>8</id_juguete>
+<id_nota_pago>28</id_nota_pago>
+<nombre>Juguete 8</nombre>
+<cantidad>8</cantidad>
+<precio>30</precio>
+</Juguete>
+<Juguete pk="9">
+<id_juguete>9</id_juguete>
+<id_nota_pago>29</id_nota_pago>
+<nombre>Juguete 9</nombre>
+<cantidad>2</cantidad>
+<precio>22</precio>
+</Juguete>
+<Juguete pk="10">
+<id_juguete>10</id_juguete>
+<id_nota_pago>30</id_nota_pago>
+<nombre>Juguete 10</nombre>
+<cantidad>5</cantidad>
+<precio>16</precio>
+</Juguete>
+</Jugetes>
+ 

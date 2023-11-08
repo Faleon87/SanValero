@@ -4,6 +4,7 @@ import model.MotorSql.MotorSql;
 import model.Poo.Albaran;
 import model.Poo.Factura;
 import model.Poo.Juguete;
+import model.Poo.NotaPago;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class SqlAction {
     private final String SQL_SELECT_JUGUETE="select *  from juguete";
     private final String SQL_SELECT_ALBARAN="select * from albaran";
     private final String SQL_SELECT_FACTURA="select * from factura";
+    private final String SQL_SELECT_NOTAPAGO="select * from notapago";
+
+    private final String SQL_INSERT_ALBARAN = "insert into albaran (ID_PEDIDO,ID_FACTURA,NOMBRE_EMPRESA_PROVEEDORA,NOMBRE_RESPONSABLE,NOMBRE_EMPRESA,FECHA_PEDIDO,FECHA_ENVIO)";
     private MotorSql motorSql;
 
     public  SqlAction(){
@@ -90,6 +94,53 @@ public class SqlAction {
             this.motorSql.disconnect();
         }
         return infoFactura;
+    }
+
+    public ArrayList<NotaPago>  findNotaPago(){
+        ArrayList<NotaPago> notaPagos= new ArrayList<>();
+        String sql = SQL_SELECT_NOTAPAGO;
+        try {
+            this.motorSql.connect();
+            ResultSet rs = this.motorSql.executeQuery(sql);
+            while (rs.next()){
+                NotaPago n1 = new NotaPago();
+                n1.setId_nota_pago(rs.getInt(1));
+                n1.setId_particular(rs.getInt(2));
+                n1.setDni(rs.getString(3));
+                n1.setNombre_particular(rs.getString(4));
+                n1.setFecha_particular(rs.getString(5));
+                notaPagos.add(n1);
+
+            }
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }finally {
+            this.motorSql.disconnect();
+        }
+        return notaPagos;
+    }
+
+    public int InsertAlbaran(Albaran info) {
+        String xml = SQL_INSERT_ALBARAN;
+        int result=0;
+        try {
+            this.motorSql.connect();
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex);
+        }
+        xml += "VALUES(" + info.getId_pedido() + ",";
+        xml += info.getId_factura() + ",";
+        xml += '"' + info.getNombreEmpresaProveedora() + '"' + ",";
+        xml += "'" + info.getNombreResponsable() + "',";
+        xml += "'" + info.getNombreEmpresa() + "',";
+        xml += "'" + info.getFechaPedido() + "',";
+        xml += "'" + info.getFechaEnvio() + "')";
+        try {
+            result = this.motorSql.execute(xml);
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex);
+        }
+        return  result;
     }
 
 }

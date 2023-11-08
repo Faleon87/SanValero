@@ -1,5 +1,7 @@
 package model.Poo;
 
+import org.w3c.dom.Element;
+
 import java.util.ArrayList;
 
 public class Albaran {
@@ -91,6 +93,20 @@ public class Albaran {
         this.fechaEnvio = fechaEnvio;
     }
 
+    public static Albaran fromXml(Element elemento){
+        Albaran albaran = new Albaran();
+        String id_pedido = elemento.getElementsByTagName("id_pedido").item(0).getTextContent();
+        albaran.setId_pedido(Integer.parseInt(id_pedido));
+        String id_factura  = elemento.getElementsByTagName("id_factura").item(0).getTextContent();
+        albaran.setId_factura(Integer.parseInt(id_factura));
+        albaran.setNombreEmpresaProveedora(elemento.getElementsByTagName("nombreEmpresaProveedora").item(0).getTextContent());
+        albaran.setNombreResponsable(elemento.getElementsByTagName("nombreResponsable").item(0).getTextContent());
+        albaran.setNombreEmpresa(elemento.getElementsByTagName("nombreEmpresa").item(0).getTextContent());
+        albaran.setFechaPedido(elemento.getElementsByTagName("fechaPedido").item(0).getTextContent());
+        albaran.setFechaEnvio(elemento.getElementsByTagName("fechaEnvio").item(0).getTextContent());
+        return albaran;
+    }
+
     public static String toXml(ArrayList<Albaran> info){
         String xml = "<Albarans>\n";
         for (int i = 0; i <info.size() ; i++) {
@@ -102,7 +118,7 @@ public class Albaran {
             xml+= "<nombreResponsable>" + info.get(i).getNombreResponsable() + "</nombreResponsable>\n";
             xml+= "<nombreEmpresa>" + info.get(i).getNombreEmpresa() + "</nombreEmpresa\n";
             xml+= "<fechaPedido>" + info.get(i).getFechaPedido() + "</fechaPedido>\n";
-            xml+= "<fechaEnvio>" + info.get(i).getFechaEnvio() + "</fechaPedido>\n";
+            xml+= "<fechaEnvio>" + info.get(i).getFechaEnvio() + "</fechaEnvio>\n";
             xml+= "</Albaran>\n";
         }
         xml+= "</Albarans>\n";

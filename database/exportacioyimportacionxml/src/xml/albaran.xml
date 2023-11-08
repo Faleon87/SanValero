@@ -1,0 +1,12 @@
+<Albarans>
+<Albaran pk="5">
+    <id_albaran></id_albaran>
+    <id_pedido>1</id_pedido>
+    <id_factura>1</id_factura>
+    <nombreEmpresaProveedora>San Valero</nombreEmpresaProveedora>
+    <nombreResponsable>Jaime</nombreResponsable>
+    <nombreEmpresa>San Valero</nombreEmpresa>
+    <fechaPedido>2023-01-15</fechaPedido>
+    <fechaEnvio>2023-01-20</fechaEnvio>
+</Albaran>
+</Albarans>
