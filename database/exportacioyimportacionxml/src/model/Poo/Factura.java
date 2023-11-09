@@ -1,5 +1,7 @@
 package model.Poo;
 
+import org.w3c.dom.Element;
+
 import java.util.ArrayList;
 
 public class Factura {
@@ -69,7 +71,16 @@ private  String fecha;
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
+    public static Factura fromXml(Element elemento){
+        Factura factura = new Factura();
+        factura.setMedio_pago(elemento.getElementsByTagName("medio_pago").item(0).getTextContent());
+        factura.setDireccion_envio(elemento.getElementsByTagName("direccion_envio").item(0).getTextContent());
+        String codigo_envio = elemento.getElementsByTagName("codigo_envio").item(0).getTextContent();
+        factura.setCodigo_envio(Integer.parseInt(codigo_envio));
+        factura.setCompaniaTransporte(elemento.getElementsByTagName("companiaTransporte").item(0).getTextContent());
+        factura.setFecha(elemento.getElementsByTagName("fecha").item(0).getTextContent());
+        return factura;
+    }
     @Override
     public String toString() {
         return "Factura{" +

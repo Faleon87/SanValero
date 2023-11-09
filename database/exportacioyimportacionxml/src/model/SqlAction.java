@@ -17,6 +17,8 @@ public class SqlAction {
     private final String SQL_SELECT_NOTAPAGO="select * from notapago";
 
     private final String SQL_INSERT_ALBARAN = "insert into albaran (ID_PEDIDO,ID_FACTURA,NOMBRE_EMPRESA_PROVEEDORA,NOMBRE_RESPONSABLE,NOMBRE_EMPRESA,FECHA_PEDIDO,FECHA_ENVIO)";
+    private final String SQL_INSERT_FACTURA = "insert into factura(MEDIO_PAGO,DIRECCION_ENVIO,CODIGO_ENVIO, COMPANIA_TRANSPORTE,FECHA)";
+    private final String SQL_INSERT_JUGUETE = "insert into juguete(ID_NOTA_PAGO,NOMBRE,CANTIDAD,PRECIO)";
     private MotorSql motorSql;
 
     public  SqlAction(){
@@ -138,9 +140,49 @@ public class SqlAction {
         try {
             result = this.motorSql.execute(xml);
         } catch (Exception ex) {
-            System.out.println("Error:" + ex);
+            System.out.println("Error: " + ex);
         }
         return  result;
+    }
+    public  int InsertFactura(Factura info){
+        String xml = SQL_INSERT_FACTURA;
+        int result = 0;
+        try {
+            this.motorSql.connect();
+        }catch (Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        xml+= "VALUES('" + info.getMedio_pago() + ",";
+        xml+= "'" + info.getDireccion_envio() + "',";
+        xml+= info.getCodigo_envio() + ",";
+        xml+= "'" + info.getCompaniaTransporte() + ",";
+        xml+= "'" + info.getFecha() + "')";
+        try {
+            result = this.motorSql.execute(xml);
+        }catch (Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return result;
+    }
+
+    public int InsertJuguete(Juguete info){
+        String xml = SQL_INSERT_JUGUETE;
+        int result = 0;
+        try {
+            this.motorSql.connect();
+        }catch (Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        xml+= "VALUES(" + info.getId_nota_pago() + ",";
+        xml+= "'" + info.getNombre() + "',";
+        xml+= info.getCantidad() + ",";
+        xml+= info.getPrecio() + ")";
+        try {
+            result = this.motorSql.execute(xml);
+        }catch (Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return result;
     }
 
 }

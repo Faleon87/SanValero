@@ -1,5 +1,7 @@
 package model.Poo;
 
+import org.w3c.dom.Element;
+
 import java.util.ArrayList;
 
 public class Juguete extends ArrayList<Juguete> {
@@ -62,6 +64,17 @@ public class Juguete extends ArrayList<Juguete> {
         this.precio = precio;
     }
 
+    public static Juguete fromXml(Element elemento){
+        Juguete juguete = new Juguete();
+        String id_nota_pago = elemento.getElementsByTagName("id_nota_pago").item(0).getTextContent();
+        juguete.setId_nota_pago(Integer.parseInt(id_nota_pago));
+        juguete.setNombre(elemento.getElementsByTagName("nombre").item(0).getTextContent());
+        String cantidad = elemento.getElementsByTagName("cantidad").item(0).getTextContent();
+        juguete.setCantidad(Integer.parseInt(cantidad));
+        String precio = elemento.getElementsByTagName("precio").item(0).getTextContent();
+        juguete.setPrecio(Integer.parseInt(precio));
+        return juguete;
+    }
     @Override
     public String toString() {
         return "Juguete{" +

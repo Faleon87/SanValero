@@ -1,5 +1,7 @@
 package model.Poo;
 
+import org.w3c.dom.Element;
+
 import java.util.ArrayList;
 
 public class NotaPago {
@@ -60,6 +62,15 @@ public class NotaPago {
         this.fecha_particular = fecha_particular;
     }
 
+    public static NotaPago fromXml(Element elemento){
+        NotaPago notaPago = new NotaPago();
+        String id_particular= elemento.getElementsByTagName("id_particular").item(0).getTextContent();
+        notaPago.setId_particular(Integer.parseInt(id_particular));
+        notaPago.setDni(elemento.getElementsByTagName("dni").item(0).getTextContent());
+        notaPago.setNombre_particular(elemento.getElementsByTagName("nombre_particular").item(0).getTextContent());
+        notaPago.setFecha_particular(elemento.getElementsByTagName("fecha_particular").item(0).getTextContent());
+        return notaPago;
+    }
     @Override
     public String toString() {
         return "NotaPago{" +
