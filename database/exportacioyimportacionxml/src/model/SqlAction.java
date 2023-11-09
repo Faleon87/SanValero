@@ -19,7 +19,9 @@ public class SqlAction {
     private final String SQL_INSERT_ALBARAN = "insert into albaran (ID_PEDIDO,ID_FACTURA,NOMBRE_EMPRESA_PROVEEDORA,NOMBRE_RESPONSABLE,NOMBRE_EMPRESA,FECHA_PEDIDO,FECHA_ENVIO)";
     private final String SQL_INSERT_FACTURA = "insert into factura(MEDIO_PAGO,DIRECCION_ENVIO,CODIGO_ENVIO, COMPANIA_TRANSPORTE,FECHA)";
     private final String SQL_INSERT_JUGUETE = "insert into juguete(ID_NOTA_PAGO,NOMBRE,CANTIDAD,PRECIO)";
-    private MotorSql motorSql;
+
+    private final String SQL_INSERT_NOTAPAGO = "insert into notapago(ID_PARTICULAR,DNI,NOMBRE_PARTICULAR,FECHA_TRANSACCION)";
+    private final MotorSql motorSql;
 
     public  SqlAction(){
         this.motorSql = new MotorSql();
@@ -184,5 +186,23 @@ public class SqlAction {
         }
         return result;
     }
-
+    public int InsertNotaPago(NotaPago info){
+       String xml = SQL_INSERT_NOTAPAGO;
+       int result = 0;
+       try {
+           this.motorSql.connect();
+       }catch (Exception ex){
+           System.out.println("Error: " + ex);
+       }
+       xml+= "VALUES(" + info.getId_particular() + ",";
+       xml+= "'" + info.getDni() + "',";
+       xml+= "'" + info.getNombre_particular() + "',";
+       xml+= "'" + info.getFecha_particular() + "')";
+       try {
+           result = this.motorSql.execute(xml);
+       }catch (Exception ex){
+           System.out.println("Error: "  + ex);
+       }
+       return  result;
+    }
 }

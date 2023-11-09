@@ -63,13 +63,8 @@ public class Main {
                                 if (nodo.getNodeType() == Node.ELEMENT_NODE){
                                     Element elemento = (Element) nodo;
                                     Albaran albaran = Albaran.fromXml(elemento);
-//                                    boolean exist = sql.checkduplicateregister()
-                                   // if (exist) {
-                                     //   System.out.println("Ya existe este registro");
-                                    //}else{
-                                        int result = sql.InsertAlbaran(albaran);
-                                        out.println(result);
-                                    //}
+                                    int result = sql.InsertAlbaran(albaran);
+                                    out.println(result);
                                 }
                             }
                         } catch (Exception e) {
@@ -83,7 +78,6 @@ public class Main {
                                 }
                             }catch (Exception e2){
                                 out.println("Error: " + e2);
-
                             }
                         }
                     }if(table.equalsIgnoreCase("FACTURA")){
@@ -101,18 +95,14 @@ public class Main {
                                 if (nodo.getNodeType() == Node.ELEMENT_NODE){
                                     Element elemento = (Element) nodo;
                                     Factura factura = Factura.fromXml(elemento);
-//                                    boolean exist = sql.checkduplicateregister()
-                                    // if (exist) {
-                                    //   System.out.println("Ya existe este registro");
-                                    //}else{
                                     int result = sql.InsertFactura(factura);
                                     out.println(result);
-                                    //}
                                 }
                             }
                         }catch (Exception e){
                             out.println("Error: "  + e);
                         }
+
                     }
                     if (table.equalsIgnoreCase("JUGUETE")){
                         try {
@@ -129,46 +119,37 @@ public class Main {
                                 if (nodo.getNodeType() == Node.ELEMENT_NODE){
                                     Element elemento = (Element) nodo;
                                     Juguete juguete = Juguete.fromXml(elemento);
-//                                    boolean exist = sql.checkduplicateregister()
-                                    // if (exist) {
-                                    //   System.out.println("Ya existe este registro");
-                                    //}else{
                                     int result = sql.InsertJuguete(juguete);
                                     out.println(result);
-                                    //}
                                 }
                             }
                         }catch (Exception ex){
                             out.println("Error:" + ex);
                         }
-                    }if (table.equalsIgnoreCase("NOTAPAGO")){
-                    try {
-                        out.println("Pasame la ruta de tu archivo ");
-                        table= sc.next();
-                        file= new File(table);
-                        reader=new FileReader(file);
-                        buffer= new BufferedReader(reader);
-                        doc= dBuilder.parse(file);
-                        doc.getDocumentElement().normalize();
-                        NodeList nodeList = doc.getElementsByTagName("Juguetes");
-                        for (int i = 0; i <nodeList.getLength() ; i++) {
-                            Node nodo = nodeList.item(i);
-                            if (nodo.getNodeType() == Node.ELEMENT_NODE){
-                                Element elemento = (Element) nodo;
-                                NotaPago notaPago = NotaPago.fromXml(elemento);
-//                                    boolean exist = sql.checkduplicateregister()
-                                // if (exist) {
-                                //   System.out.println("Ya existe este registro");
-                                //}else{
-                                int result = sql.InsertJuguete(juguete);
-                                out.println(result);
-                                //}
-                            }
-                        }
-                    }catch (Exception ex){
-                        out.println("Error:" + ex);
                     }
-                }
+                    if (table.equalsIgnoreCase("NOTAPAGO")){
+                        try {
+                            out.println("Pasame la ruta de tu archivo ");
+                            table= sc.next();
+                            file= new File(table);
+                            reader=new FileReader(file);
+                            buffer= new BufferedReader(reader);
+                            doc= dBuilder.parse(file);
+                            doc.getDocumentElement().normalize();
+                            NodeList nodeList = doc.getElementsByTagName("Juguetes");
+                            for (int i = 0; i <nodeList.getLength() ; i++) {
+                                Node nodo = nodeList.item(i);
+                                if (nodo.getNodeType() == Node.ELEMENT_NODE){
+                                    Element elemento = (Element) nodo;
+                                    NotaPago notaPago = NotaPago.fromXml(elemento);
+                                    int result = sql.InsertNotaPago(notaPago);
+                                    out.println(result);
+                                }
+                            }
+                        }catch (Exception ex){
+                            out.println("Error:" + ex);
+                        }
+                    }
                     break;
                 case 2:
                     out.println("Que tabla quieres: Albaran,Factura,Juguete,NotaPago");
@@ -177,38 +158,42 @@ public class Main {
                         ArrayList<Juguete> j1 = sql.findJuguete();
                         xml = Juguete.toXml(j1);
                         try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\juguetes.xml")) {
+                           writer.write(xml);
                             out.println("ArrayList exportado a XML correctamente.");
                         } catch (IOException e) {
                             out.println("Error:" + e);
                         }
                     }if (table.equalsIgnoreCase("ALBARAN")){
                         ArrayList<Albaran> a1 = sql.findAlbaran();
-                        xml = Albaran.toXml(a1);
-                        try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\albaran.xml")) {
-                        out.println("ArrayList exportado a XML correctamente.");
-                        } catch (IOException e) {
-                        out.println("Error:" + e);
-                    }
-                    }if (table.equalsIgnoreCase("FACTURA")){
-                        ArrayList<Factura> f1 = sql.findFactura();
-                        xml = Factura.toXML(f1);
-                    try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\factura.xml")) {
+                         xml = Albaran.toXml(a1);
+                    try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\albaran.xml")) {
+                        writer.write(xml);
                         out.println("ArrayList exportado a XML correctamente.");
                     } catch (IOException e) {
                         out.println("Error:" + e);
-                    }if(table.equalsIgnoreCase("NOTAPAGO")){
-                        ArrayList<NotaPago> n1 = sql.findNotaPago();
-                        xml = NotaPago.toXML(n1);
-                        try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\notapago.xml")) {
+                    }
+                    }
+                    if (table.equalsIgnoreCase("FACTURA")){
+                        ArrayList<Factura> f1 = sql.findFactura();
+                        xml = Factura.toXML(f1);
+                        try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\factura.xml")) {
+                            writer.write(xml);
                             out.println("ArrayList exportado a XML correctamente.");
                         } catch (IOException e) {
                             out.println("Error:" + e);
+                        }
+                    }
+                    if(table.equalsIgnoreCase("NOTAPAGO")){
+                        ArrayList<NotaPago> n1 = sql.findNotaPago();
+                        xml = NotaPago.toXML(n1);
+                        try (FileWriter writer = new FileWriter("C:\\Users\\jaime\\OneDrive\\Escritorio\\SanValero\\database\\exportacioyimportacionxml\\src\\xml\\notapago.xml")) {
+                            writer.write(xml);
+                            out.println("ArrayList exportado a XML correctamente.");
+                        } catch (IOException e) {
+                            out.println("Error:" + e);
+                        }
                     }
             }
         }while (resp!=0);
-
-
-
-
     }
 }
